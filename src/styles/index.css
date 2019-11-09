@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Montserrat', sans-serif;
+}
+
+.exercise-header {
+  padding: 1rem 0;
+  margin: 2rem 0;
+  text-align: center;
+  color: #fff;
+  background-color: #00a4bd;
+}
+
+.quote-container {
+  display: flex;
+}
+
+.quote-inner {
+  position: relative;
+  margin: 3em .5em 3em auto;
+  padding: 1.5em 0 1.5em 1.5em;
+  font-size: 18px;
+  max-width: 50%;
+  border-left: solid 2px #FF6C00;
+}
+
+.quote-inner p::before {
+  text-align: center;
+  content: open-quote;
+  position: absolute;
+  top: 0;
+  left: -20px;
+  margin: 0;
+  width: 35px;
+  height: 35px;
+  font-size: 3em;
+  color: white;
+  border-radius: 50%;
+  border: solid 2px white;
+  background-color: #FF6C00;
+}
+
+.quote-inner p::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -6px;
+  margin: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #FF6C00;
+}
+
+.quote-inner span {
+  font-weight: 800;
+  font-size: 12px;
+  position: relative;
+  bottom: -15px;
+}
+
+.quote-button {
+  align-self: flex-start;
+  background-color: #00A4E2;
+  margin: auto auto auto 0;
+  padding: 20px 30px;
+  border-radius: 5px;
+  color: white;
+}
+
+.quote-button:hover {
+  cursor: pointer;
+}
+
+
