@@ -11,8 +11,16 @@ body {
   background-color: #00a4bd;
 }
 
-.quote-container {
+.container {
   display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.col {
+  flex-direction: column;
 }
 
 .quote-inner {

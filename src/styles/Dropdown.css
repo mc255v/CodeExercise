@@ -1,0 +1,33 @@
+.dropdown {
+  position: relative;
+}
+
+.dd-list {
+  position: absolute;
+  top: 100%;
+  background-color: lightgray;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.dd-list-item {
+  position: relative;
+  border: solid 1px black;
+  border-bottom: none;
+}
+
+.dd-list-item:last-of-type {
+  border-bottom: solid 1px black;
+}
+
+.dd-list-item label {
+  display: block;
+  padding: 5px 20px 5px 35px;
+}
+
+.dd-list-item input {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+}
