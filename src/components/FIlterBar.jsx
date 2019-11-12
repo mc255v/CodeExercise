@@ -22,31 +22,35 @@ const FilterBar = () => {
   }
 
   return(
-    <div>
-      <div className="container">
-        <Dropdown title={"genre"} list={genreList}/>
-        <Dropdown title={"year"} list={yearList} />
+    <div className="filterbar">
+      <div className="container filter-row">
+        <div className="container">
+          <Dropdown title={"genre"} list={genreList}/>
+          <Dropdown title={"year"} list={yearList} />
+        </div>
         <div className="search">
-          <input type="search" placeholder="Search term" />
+          <input type="text" />
           <FontAwesomeIcon icon={faSearch} />
         </div>
       </div>
-      <div className="container">
-        <input 
-          type="radio" 
-          name="type" 
-          value="movie" 
-          checked={type === "movie"} 
-          onChange={(e) => handleChange(e)}
-        /> Movies
-        <input 
-          type="radio" 
-          name="type" 
-          value="book" 
-          checked={type === "book"} 
-          onChange={(e) => handleChange(e)}
-        /> Books
-        <button onClick={() => handleClick()}>CLEAR FILTERS</button>
+      <div className="container filter-row">
+        <div className="container">
+          <input 
+            type="radio" 
+            name="type" 
+            value="movie" 
+            checked={type === "movie"} 
+            onChange={(e) => handleChange(e)}
+          /> Movies
+          <input 
+            type="radio" 
+            name="type" 
+            value="book" 
+            checked={type === "book"} 
+            onChange={(e) => handleChange(e)}
+          /> Books
+        </div>
+        <button className="clear-filter" onClick={() => handleClick()}>CLEAR FILTERS</button>
       </div>
     </div>
   );

@@ -1,5 +1,19 @@
 .dropdown {
   position: relative;
+  margin: 5px 10px;
+}
+
+.dropdown button {
+  background-color: lightgray;
+  padding: 5px;
+  width: 120px;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.dropdown button svg {
+  float: right;
 }
 
 .dd-list {

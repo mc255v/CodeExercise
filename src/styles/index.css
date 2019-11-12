@@ -80,4 +80,21 @@ body {
   cursor: pointer;
 }
 
+.noresults {
+  width: 100vw;
+  height: 50vh;
+  text-align: center;
+}
 
+@media only screen and (max-width: 600px) {
+  .quote {
+    flex-wrap: wrap;
+  }
+  .quote-inner {
+    margin: 20px;
+    max-width: 100%;
+  }
+  .quote-button {
+    margin: auto;
+  }
+}
