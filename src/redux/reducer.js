@@ -1,8 +1,11 @@
+import filter from '../utils/filter';
+
 const initialState = {
   mediaList: [],
   filterResults: [],
   genreList: {},
-  yearList: {}
+  yearList: {},
+  type: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -27,6 +30,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         yearList: action.yearList
       }
+    case "SET_TYPE":
+      return {
+        ...state,
+        type: action.value
+      }
     case "UPDATE_GENRE_LIST":
       return {
         ...state,
@@ -36,6 +44,26 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         yearList: {...state.yearList, [action.update.key]: action.update.value}
+      }
+    case "APPLY_FILTERS":
+      const criteria = {
+        year: state.yearList,
+        genre: state.genreList,
+        type: state.type
+      }
+      const results = filter.applyFilters(state.mediaList, criteria)
+      return {
+        ...state,
+        filterResults: results
+      }
+    case "CLEAR_FILTERS":
+      const media = [...state.mediaList]
+      return {
+        ...state,
+        filterResults: media,
+        genreList: filter.getGenreList(media),
+        yearList: filter.getYearList(media),
+        type: null
       }
     default:
       return state;

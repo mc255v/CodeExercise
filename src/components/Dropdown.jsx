@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import { updateFilterList} from '../redux/actions';
+import { updateFilterList, applyFilters } from '../redux/actions';
 import '../styles/Dropdown.css';
 
 const Dropdown = ({title, list}) => {
@@ -16,7 +16,6 @@ const Dropdown = ({title, list}) => {
       setShowDropdown(true);
       document.addEventListener('click', closeFilter);
     }
-    console.log(list)
   }
 
   const handleChange = (e) => {
@@ -26,8 +25,7 @@ const Dropdown = ({title, list}) => {
       value: e.target.checked
     };
     dispatch(updateFilterList(update))
-    console.log(update)
-    console.log(list)
+    dispatch(applyFilters())
   }
 
   const closeFilter = (e) => {
@@ -35,11 +33,7 @@ const Dropdown = ({title, list}) => {
       setIcon(faChevronUp);
       setShowDropdown(false);
       document.removeEventListener('click', closeFilter);
-      console.log('removed')
-    } else {
-      console.log('dont close')
     }
-    
   }
 
   return(

@@ -2,17 +2,23 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { setMediaList } from '../redux/actions';
+import { setType, applyFilters, clearFilters } from '../redux/actions';
 import Dropdown from './Dropdown';
 import '../styles/FilterBar.css';
 
 const FilterBar = () => {
   const genreList = useSelector(state => state.genreList);
   const yearList = useSelector(state => state.yearList);
+  const type = useSelector(state => state.type);
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(setMediaList([]));
+    dispatch(clearFilters())
+  }
+
+  const handleChange = (e) => {
+    dispatch(setType(e.target.value))
+    dispatch(applyFilters())
   }
 
   return(
@@ -26,8 +32,20 @@ const FilterBar = () => {
         </div>
       </div>
       <div className="container">
-        <input type="radio" name="type" value="movies" /> Movies
-        <input type="radio" name="type" value="books" /> Books
+        <input 
+          type="radio" 
+          name="type" 
+          value="movie" 
+          checked={type === "movie"} 
+          onChange={(e) => handleChange(e)}
+        /> Movies
+        <input 
+          type="radio" 
+          name="type" 
+          value="book" 
+          checked={type === "book"} 
+          onChange={(e) => handleChange(e)}
+        /> Books
         <button onClick={() => handleClick()}>CLEAR FILTERS</button>
       </div>
     </div>
