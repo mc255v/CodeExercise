@@ -7,8 +7,19 @@ const filter = {
     const res = await axios.get('https://hubspotwebteam.github.io/CodeExercise/src/js/data/data.json');
     return alphaSort(res.data.media);
   },
-  genreList: media => {
-    
+  getGenreList: mediaList => {
+    let arr = []
+    mediaList.forEach(media => {
+     arr = [...arr, ...media.genre] 
+    });
+    return arr.reduce((o, key) => ({ ...o, [key]: false}), {});
+  },
+  getYearList: mediaList => {
+    let arr = []
+    mediaList.forEach(media => {
+     arr.push(media.year)
+    });
+    return arr.reduce((o, key) => ({ ...o, [key]: false}), {});
   }
 }
 

@@ -1,26 +1,62 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
-// import filter from '../utils/filter';
+import { updateFilterList} from '../redux/actions';
 import '../styles/Dropdown.css';
 
 const Dropdown = ({title, list}) => {
-  const [showDropdown, setShowDropdown] = useState(true);
-  const [icon, setIcon] = useState(faChevronDown)
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [icon, setIcon] = useState(faChevronUp);
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    icon.iconName === "chevron-down" ? setIcon(faChevronUp) : setIcon(faChevronDown);
-    setShowDropdown(!showDropdown);
+    if (!showDropdown) {
+      setIcon(faChevronDown);
+      setShowDropdown(true);
+      document.addEventListener('click', closeFilter);
+    }
+    console.log(list)
+  }
+
+  const handleChange = (e) => {
+    const update = {
+      type: title.toLowerCase(), 
+      key: e.target.value, 
+      value: e.target.checked
+    };
+    dispatch(updateFilterList(update))
+    console.log(update)
+    console.log(list)
+  }
+
+  const closeFilter = (e) => {
+    if (e.target.parentElement.className !== "dd-list-item") {
+      setIcon(faChevronUp);
+      setShowDropdown(false);
+      document.removeEventListener('click', closeFilter);
+      console.log('removed')
+    } else {
+      console.log('dont close')
+    }
+    
   }
 
   return(
     <div className="dropdown">
-      <button onClick={() => handleClick()}>{title} <FontAwesomeIcon icon={icon} /></button>
+      <button id={title} onClick={() => handleClick()}>{title.toUpperCase()} <FontAwesomeIcon icon={icon} /></button>
       {showDropdown && <ul className="dd-list">
-        {list.map((item, index) => (
+        {Object.keys(list).map((key, index) => (
           <li className="dd-list-item" key={index} >
-            <input type="checkbox" id={item} name={item} value={item} />
-            <label htmlFor={item}>{item}</label>
+            <input 
+              type="checkbox" 
+              id={key} 
+              name={key} 
+              value={key}
+              checked={list[key]}
+              onChange={e => handleChange(e)}
+            />
+            <label htmlFor={key}>{key.toUpperCase()}</label>
           </li>
         ))}
       </ul>}
