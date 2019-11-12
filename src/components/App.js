@@ -1,7 +1,7 @@
 import React from 'react';
-import './styles/App.css';
-import FilterBar from './components/FIlterBar';
-import MediaList from './components/MediaList';
+import '../styles/App.css';
+import FilterBar from './FilterBar';
+import MediaList from './MediaList';
 
 function App() {
   return (
